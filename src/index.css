@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+}
+
+.counter {
+ 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 100px;
+}
+
+button {
+  font-size: 40px;
+  border: 3px solid black;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  
+}
+
+p {
+  font-size: 60px;
+  margin-top: 20%;
+}
