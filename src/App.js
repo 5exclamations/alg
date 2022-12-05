@@ -1,43 +1,14 @@
-import "./App.css";
 import React, { useEffect } from "react";
 
-function Modal() {
-  const onClick = () => {
-    document.querySelectorAll(".modal-content")[1].style.display = "none";
-  };
 
-  return (
-    <div className="modal-dialog">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title">Заказ 18020642-0063 доставлен</h5>
-        </div>
-        <div className="modal-body">
-          <p>
-            Заберите его в пункте выдачи до 15 апреля включительно, потом заказ
-            придется отменить.
-            <br />
-            Вход в пункт выдачи только в маске и перчатках.
-          </p>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" onClick={onClick}>
-            Закрыть
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
-function Notifications() {
-  const onClick = () => {
-    document.querySelectorAll(".modal-content")[1].style.display = "block";
-  };
+function Notes() {
   return (
-    <div className="modal-dialog">
-      <div className="modal-content">
-        <button type="button" className="btn btn-primary" onClick={onClick}>
+    <div className="dialog">
+      <div className="m-content">
+        <button type="button" className="btn btn-primary" onClick={(event) => {
+    document.querySelectorAll(".m-content")[1].style.display = "block";
+  }}>
           Уведомления
         </button>
       </div>
@@ -46,27 +17,57 @@ function Notifications() {
 }
 
 function App() {
-  const onKeyDown = (event) => {
-    if (event.key === "Escape") {
-      document.querySelectorAll(".modal-content")[1].style.display = "none";
-    }
-    console.log(event.key);
-  };
 
   useEffect(() => {
-    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        document.querySelectorAll(".m-content")[1].style.display = "none";
+      }
+      console.log(event.key);
+    });
 
     return () => {
-      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          document.querySelectorAll(".m-content")[1].style.display = "none";
+        }
+        console.log(event.key);
+      });
     };
   });
 
   return (
     <div className="app">
-      <Notifications />
+      <Notes />
       <Modal />
     </div>
   );
 }
+function Modal() {
 
+  return (
+    <div className="dialog">
+      <div className="m-content">
+        <div className="m-header">
+          <h5 className="m-title">Заказ 97210652-0049 доставлен</h5>
+        </div>
+        <div className="m-body">
+          <p>
+            Заберите его в пункте выдачи до 28 апреля включительно, потом заказ
+            придется отменить.
+            <br />
+            Вход в пункт выдачи только в маске и перчатках.
+          </p>
+        </div>
+        <div className="m-footer">
+          <button type="button" className="btn btn-secondary" onClick={ () => {
+    document.querySelectorAll(".m-content")[1].style.display = "none";
+  }}>
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 export default App;
